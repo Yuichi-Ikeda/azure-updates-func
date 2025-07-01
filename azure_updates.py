@@ -76,7 +76,7 @@ def azure_updates(date_time):
     content_html = build_JA_content_html(data)
     html_template = HTML_TEMPLATE
     final_html = html_template.format(contents=content_html)
-    send_mail(final_html)
+    send_mail(final_html, date_time)
 
 def fetch_azure_updates(date_time):
     base_url = "https://www.microsoft.com/releasecommunications/api/v2/azure"
@@ -156,7 +156,7 @@ def truncate_to_seconds(dt_str):
       return dt_str
     return dt_second_str
 
-def send_mail(html):
+def send_mail(html, date_time):
     try:
         connection_string = os.getenv("MAIL_CONNECTION_STRING")
         sender_address = os.getenv("SENDER_ADDRESS")
@@ -168,7 +168,7 @@ def send_mail(html):
                 "to": [{"address": recipient_address}]
             },
             "content": {
-                "subject": "Azure 更新情報",
+                "subject": f"Azure 更新情報 <{date_time.split('T')[0]}>",
                 "html": html
             },
             

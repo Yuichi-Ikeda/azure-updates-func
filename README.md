@@ -42,7 +42,7 @@ source .venv/bin/activate  # Windowsの場合は `.venv\Scripts\activate`
 
 ### 3. 必要なパッケージのインストール
 ```cmd
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 4. 環境変数の設定
