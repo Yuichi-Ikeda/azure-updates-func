@@ -6,7 +6,7 @@ Microsoft 公式の [Azure 更新情報](https://azure.microsoft.com/updates) �
 
 ## 主な機能
 
-- **タイマー起動 :** 日本時間で毎朝 AM 9:01（UTC 0:01）に実行し、前日に発表された更新情報を自動取得
+- **タイマー起動 :** 日本時間で毎朝 AM 9:00（UTC 0:00）に実行し、前日に発表された更新情報を自動取得
 - **AI 翻訳 :** Azure OpenAI を利用した高品質な日本語翻訳
 - **メール配信 :** Azure Communication Services を使用した HTML メール送信
 
