@@ -5,8 +5,8 @@ import requests
 from datetime import datetime, timezone
 from azure.communication.email import EmailClient
 
-SYSTEM_PROMPT_TITLE = "入力された英文を日本語に翻訳して下さい。先頭のラベルは、次のように翻訳してください。General Availability: 一般提供：, Launched: 一般提供：, In preview: パブリックプレビュー：, Public Preview: パブリックプレビュー：, Private Preview: プライベートプレビュー：, Retirement: リタイアメント："
-SYSTEM_PROMPT_DESCRIPTION = "HTML書式で入力された文書の一部を日本語に翻訳して下さい。文書は <div> タグで開始して、</div> タグで終了してください。文書中に lang='EN-US' の属性がある場合は lang='JA-JP' に変更してください。font-family: Arial; や font-family: Times New Roman; のような英文フォントの属性は font-family: Noto Sans JP; に変更してください。それ以外の style 属性やタグ記述は、既存のままオリジナルの HTML書式を保持してください。"
+SYSTEM_PROMPT_TITLE = "入力された英文を日本語に翻訳して下さい。Azure 固有のサービス名は英文表記のままでお願いします。先頭のラベルは、次のように翻訳してください。General Availability: 一般提供：, Launched: 一般提供：, In preview: パブリックプレビュー：, Public Preview: パブリックプレビュー：, Private Preview: プライベートプレビュー：, Retirement: リタイアメント："
+SYSTEM_PROMPT_DESCRIPTION = "HTML書式で入力された文書を日本語に翻訳して下さい。Azure 固有のサービス名は英文表記のままでお願いします。文書は <div> タグで開始して、</div> タグで終了してください。文書中に lang='EN-US' の属性がある場合は lang='JA-JP' に変更してください。font-family: Arial; や font-family: Times New Roman; のような英文フォントの属性は font-family: Noto Sans JP; に変更してください。それ以外の style 属性やタグ記述は、既存のままオリジナルの HTML書式を保持してください。"
 
 HTML_TEMPLATE = '''\
 <!DOCTYPE html>
@@ -17,35 +17,35 @@ HTML_TEMPLATE = '''\
   <style>
     body {{
       font-family: Noto Sans JP;
-      font-size: 1.0em;    
-      margin: 40px;
+      font-size: 1.0em;
       background: #fff;
       color: #222;
     }}
     .content {{
       font-family: Noto Sans JP;
       font-size: 1.0em;    
-      padding: 22px 28px;
+      padding: 22px 8px;
       border-radius: 10px;
       box-shadow: 0 2px 8px #0001;
-      margin-bottom: 32px;
+      margin-bottom: 12px;
     }}
     .title {{
       background: #f9f9fb;    
       font-family: Noto Sans JP;
       font-size: 1.2em;
       font-weight: bold;
+      padding: 6px;
       margin-bottom: 12px;
     }}
     .label {{
       font-size: 1.0em;
       font-family: Noto Sans JP;
+      font-weight: 500;
       display: inline-block;
       background: #e6f2fb;
       color: #003366;
       border-radius: 8px;
-      padding: 6px 8px;
-      font-weight: 500;
+      padding: 6px;
       margin-bottom: 12px;
     }}
     .description {{
@@ -56,7 +56,6 @@ HTML_TEMPLATE = '''\
     .footer {{
       font-family: Noto Sans JP;
       font-size: 1.0em;
-      border-radius: 2px;
       font-weight: 500;
       letter-spacing: 0.03em;
     }}
