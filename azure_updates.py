@@ -5,8 +5,8 @@ import requests
 from datetime import datetime, timezone
 from azure.communication.email import EmailClient
 
-SYSTEM_PROMPT_TITLE = "入力された英文を日本語に翻訳して下さい。Azure 固有のサービス名は英文表記のままでお願いします。先頭のラベルは、次のように翻訳してください。General Availability: 一般提供：, Launched: 一般提供：, In preview: パブリックプレビュー：, Public Preview: パブリックプレビュー：, Private Preview: プライベートプレビュー：, Retirement: リタイアメント："
-SYSTEM_PROMPT_DESCRIPTION = "HTML書式で入力された文書を日本語に翻訳して下さい。Azure 固有のサービス名は英文表記のままでお願いします。文書は <div> タグで開始して、</div> タグで終了してください。文書中に lang='EN-US' の属性がある場合は lang='JA-JP' に変更してください。font-family: Arial; や font-family: Times New Roman; のような英文フォントの属性は font-family: Noto Sans JP; に変更してください。それ以外の style 属性やタグ記述は、既存のままオリジナルの HTML書式を保持してください。"
+SYSTEM_PROMPT_TITLE = "英語のタイトルを日本語に翻訳して下さい。Microsoft Azure のような Title Case の表記は固有名詞を示しているので英語表記のままでお願いします。先頭のラベルは、次のように翻訳してください。General Availability: 一般提供：, Launched: 一般提供：, In preview: パブリックプレビュー：, Public Preview: パブリックプレビュー：, Private Preview: プライベートプレビュー：, Retirement: リタイアメント："
+SYSTEM_PROMPT_DESCRIPTION = "HTML書式で入力された英文を日本語に翻訳して下さい。Microsoft Azure のような Title Case の表記は固有名詞を示しているので英語表記のままでお願いします。文書は <div> タグで開始して、</div> タグで終了してください。文書中に lang='EN-US' の属性がある場合は lang='JA-JP' に変更してください。font-family: Arial; や font-family: Times New Roman; のような英文フォントの属性は font-family: Noto Sans JP; に変更してください。それ以外の style 属性やタグ記述は、既存のままオリジナルの HTML書式を保持してください。"
 
 HTML_TEMPLATE = '''\
 <!DOCTYPE html>
