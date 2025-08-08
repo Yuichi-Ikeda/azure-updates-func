@@ -94,19 +94,6 @@ def fetch_azure_updates(date_time):
     response.raise_for_status()
     return response.json()["value"]
 
-def init_openai():
-    api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    api_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-04-01-preview")
-    if not (api_key and api_endpoint):
-        raise ValueError("環境変数 AZURE_OPENAI_API_KEY と AZURE_OPENAI_ENDPOINT を設定してください。")
-    else:
-        return openai.AzureOpenAI(
-            api_key=api_key,
-            api_version=api_version,
-            azure_endpoint=api_endpoint,
-        )
-
 def build_JA_content_html(data):
     content_html = ""
     openai = init_openai()
@@ -133,6 +120,19 @@ def build_JA_content_html(data):
         '''
     return content_html
 
+def init_openai():
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    api_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2025-04-01-preview")
+    if not (api_key and api_endpoint):
+        raise ValueError("環境変数 AZURE_OPENAI_API_KEY と AZURE_OPENAI_ENDPOINT を設定してください。")
+    else:
+        return openai.AzureOpenAI(
+            api_key=api_key,
+            api_version=api_version,
+            azure_endpoint=api_endpoint,
+        )
+    
 def translate_to_japanese(openai, sysytem_prompt, user_prompt):
     try:
         response = openai.chat.completions.create(
